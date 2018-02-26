@@ -1,46 +1,18 @@
 <?php
-	echo "Hello<br>";
-	$a=5;
-	$b=10;
-	$i=0;
-	$s=5;
-	$k=5;
-	echo $a+$b ."<br>";
-	for($i; $i<100; $i++){
-		echo  ($i+1) . " Line " .($i+1). "<br>";
+echo "Student Information";
+$dom = simplexml_load_file("student.xml");
+foreach($dom->student as $h)
+{	echo "<h2>Student Name : $h->name</h2>";
+	echo "<h2>ID : $h->id</h2>";
+	echo "<h2>CGPA : $h->cgpa</h2>";
+	echo "<h2><u>Course Taken:</u></h2>";
+	echo "<ol>";
+	foreach($h->Course->courseno as $c)
+	{
+		echo "<li> $c->coursename | Section: $c->coursesection | Grade: $c->grade</li>";
 	}
-	$cgpa=array("A"=>3,"B"=>3.4,"C"=>3.5);
-	echo "Cgpa of student B :". $cgpa['B'] . "<br>";
-	foreach($cgpa as $name=>$value){
-		echo "Name : ". $name ." Cgpa : ". $value ."<br>";
-	}
-	echo "<br>";
-	for($m=0;$m<5;$m++){
-		for($n=0;$n<=$m;$n++){
-			echo "*";
-		}
-		echo "<br>";
-	}
-	
-	for($m=0;$m<5;$m++){
-		for($n=5;$n>$m;$n--){
-			echo "*";
-		}
-		echo "<br>";
-	}
-	
-	for($m=1;$m<=5;$m++){
-		for($n=5;$n>=1;$n--){
-			if($y<=$x)
-			{
-				echo "*";
-			}
-			else
-				echo "$nbsp";
-			
-		}
-		for($n=0)
-		echo "<br>";
-	}
-	
+	echo "</ol><hr>";
+}
+
+
 ?>
